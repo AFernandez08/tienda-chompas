@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chompas Andinas</title>
+
+<link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🧥 Chompas Andinas</h1>
+    <p>Moda peruana en alpaca</p>
+</header>
+
+<nav>
+    <a onclick="mostrar('inicio')">Inicio</a>
+    <a onclick="mostrar('productos')">Productos</a>
+    <a onclick="mostrar('ofertas')">Ofertas</a>
+    <a onclick="mostrar('contacto')">Contacto</a>
+    <a onclick="mostrar('carrito')">Carrito</a>
+</nav>
+
+<section id="inicio" class="activo">
+    <h2>Bienvenido</h2>
+    <p>Las mejores chompas del Perú.</p>
+</section>
+
+<section id="productos">
+    <h2>Productos</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf">
+            <h3>Chompa Alpaca</h3>
+            <p>S/120</p>
+            <button onclick="agregar('Alpaca',120)">Agregar</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157">
+            <h3>Chompa Lana</h3>
+            <p>S/90</p>
+            <button onclick="agregar('Lana',90)">Agregar</button>
+        </div>
+
+    </div>
+</section>
+
+<section id="ofertas">
+    <h2>🔥 Ofertas</h2>
+    <p>Hasta 30% de descuento.</p>
+</section>
+
+<section id="contacto">
+    <h2>Contacto</h2>
+
+    <form onsubmit="return validar()">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="email" id="correo" placeholder="Correo">
+        <textarea id="mensaje" placeholder="Mensaje"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<section id="carrito">
+    <h2>🛒 Carrito</h2>
+    <div id="lista"></div>
+    <h3>Total: S/<span id="total">0</span></h3>
+</section>
+
+<footer>
+    <p>© 2026 Chompas Andinas</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
