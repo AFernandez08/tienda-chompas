@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chompas Andinas</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f4f4;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg,#6a1b9a,#8e24aa);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: center;
+    background: #4a148c;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav a:hover {
+    background: #7b1fa2;
+}
+
+/* SECCIONES */
+section {
+    display: none;
+    padding: 20px;
+}
+
+.activo {
+    display: block;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 15px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* BOTONES */
+button {
+    background: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* FORM */
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* FOOTER */
+footer {
+    background: #4a148c;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>🧥 Chompas Andinas</h1>
+    <p>Moda peruana en alpaca</p>
+</header>
+
+<nav>
+    <a onclick="mostrar('inicio')">Inicio</a>
+    <a onclick="mostrar('productos')">Productos</a>
+    <a onclick="mostrar('ofertas')">Ofertas</a>
+    <a onclick="mostrar('contacto')">Contacto</a>
+    <a onclick="mostrar('carrito')">Carrito</a>
+</nav>
+
+<section id="inicio" class="activo">
+    <h2>Bienvenido</h2>
+    <p>Descubre las mejores chompas del Perú.</p>
+</section>
+
+<section id="productos">
+    <h2>Productos</h2>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf">
+            <h3>Chompa Alpaca</h3>
+            <p>S/120</p>
+            <button onclick="agregar('Alpaca',120)">Agregar</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157">
+            <h3>Chompa Lana</h3>
+            <p>S/90</p>
+            <button onclick="agregar('Lana',90)">Agregar</button>
+        </div>
+
+    </div>
+</section>
+
+<section id="ofertas">
+    <h2>🔥 Ofertas</h2>
+    <p>Hasta 30% de descuento en productos seleccionados.</p>
+</section>
+
+<section id="contacto">
+    <h2>Contacto</h2>
+
+    <form onsubmit="return validar()">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="email" id="correo" placeholder="Correo">
+        <textarea id="mensaje" placeholder="Mensaje"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<section id="carrito">
+    <h2>🛒 Carrito</h2>
+    <div id="lista"></div>
+    <h3>Total: S/<span id="total">0</span></h3>
+</section>
+
+<footer>
+    <p>© 2026 Chompas Andinas</p>
+</footer>
+
+<script>
+// CAMBIO DE PESTAÑAS
+function mostrar(id){
+    let secciones = document.querySelectorAll("section");
+
+    for(let i=0; i<secciones.length; i++){
+        secciones[i].classList.remove("activo");
+    }
+
+    document.getElementById(id).classList.add("activo");
+}
+
+// CARRITO
+let carrito = [];
+
+function agregar(nombre, precio){
+    carrito.push({nombre, precio});
+    render();
+    mostrar("carrito");
+}
+
+function render(){
+    let lista = document.getElementById("lista");
+    let total = 0;
+
+    lista.innerHTML = "";
+
+    for(let i=0; i<carrito.length; i++){
+        total += carrito[i].precio;
+
+        lista.innerHTML += `
+        <div>
+            ${carrito[i].nombre} - S/${carrito[i].precio}
+        </div>`;
+    }
+
+    document.getElementById("total").innerText = total;
+}
+
+// VALIDACIÓN
+function validar(){
+    let nombre = document.getElementById("nombre").value;
+    let correo = document.getElementById("correo").value;
+
+    if(nombre === "" || correo === ""){
+        alert("Completa los campos");
+        return false;
+    }
+
+    alert("Mensaje enviado correctamente");
+    return true;
+}
+</script>
+
+</body>
+</html>
